@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="526.750937pt" height="238.406906pt" viewBox="0 0 526.750937 238.406906" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-30T00:08:25.122411</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.1, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 238.406906 
+L 526.750937 238.406906 
+L 526.750937 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 106.360938 200.206125 
+L 496.960938 200.206125 
+L 496.960938 22.798125 
+L 106.360938 22.798125 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 106.360938 192.142125 
+L 114.926727 192.142125 
+L 114.926727 158.188441 
+L 106.360938 158.188441 
+z
+" clip-path="url(#p3b4d267e5f)" style="fill: #e07b39"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 106.360938 149.70002 
+L 123.492516 149.70002 
+L 123.492516 115.746336 
+L 106.360938 115.746336 
+z
+" clip-path="url(#p3b4d267e5f)" style="fill: #8e5aa8"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 106.360938 107.257914 
+L 149.189885 107.257914 
+L 149.189885 73.30423 
+L 106.360938 73.30423 
+z
+" clip-path="url(#p3b4d267e5f)" style="fill: #2e8b57"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 106.360938 64.815809 
+L 431.860937 64.815809 
+L 431.860937 30.862125 
+L 106.360938 30.862125 
+z
+" clip-path="url(#p3b4d267e5f)" style="fill: #3b6fb6"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="mccfebe1314" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#mccfebe1314" x="106.360938" y="200.206125" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="106.360938" y="214.803781" transform="rotate(-0 106.360938 214.803781)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#mccfebe1314" x="192.018832" y="200.206125" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="192.018832" y="214.803781" transform="rotate(-0 192.018832 214.803781)">10</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#mccfebe1314" x="277.676727" y="200.206125" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="277.676727" y="214.803781" transform="rotate(-0 277.676727 214.803781)">20</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#mccfebe1314" x="363.334622" y="200.206125" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="363.334622" y="214.803781" transform="rotate(-0 363.334622 214.803781)">30</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#mccfebe1314" x="448.992516" y="200.206125" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="448.992516" y="214.803781" transform="rotate(-0 448.992516 214.803781)">40</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="301.660938" y="228.804563" transform="rotate(-0 301.660938 228.804563)">Nº de trabalhos</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_6"/>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end" x="102.860938" y="179.164502" transform="rotate(-0 102.860938 179.164502)">Ciências Exatas</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_7"/>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end" x="102.860938" y="136.522396" transform="rotate(-0 102.860938 136.522396)">Tecnologia</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_8"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end" x="102.860938" y="94.280291" transform="rotate(-0 102.860938 94.280291)">Ciências Biológicas</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_9"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: end" x="102.860938" y="51.838186" transform="rotate(-0 102.860938 51.838186)">Ciências Humanas</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_7">
+    <path d="M 106.360938 200.206125 
+L 496.960938 200.206125 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="118.353043" y="177.762939" transform="rotate(-0 118.353043 177.762939)">1 (2%)</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="126.918832" y="135.320834" transform="rotate(-0 126.918832 135.320834)">2 (4%)</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="152.616201" y="92.878729" transform="rotate(-0 152.616201 92.878729)">5 (11%)</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start" x="435.287253" y="50.436623" transform="rotate(-0 435.287253 50.436623)">38 (83%)</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start" x="106.360938" y="16.798125" transform="rotate(-0 106.360938 16.798125)">Trabalhos acadêmicos da UEB por área (classificação do site)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p3b4d267e5f">
+   <rect x="106.360938" y="22.798125" width="390.6" height="177.408"/>
+  </clipPath>
+ </defs>
+</svg>

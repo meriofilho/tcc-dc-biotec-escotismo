@@ -1,0 +1,16 @@
+# Obras de terceiros baixadas da UEB (direitos dos autores): ficam só na máquina local.
+# Para baixar de novo, use as URLs em dados/trabalhos_ueb/index.tsv
+dados/trabalhos_ueb/pdf/
+dados/trabalhos_ueb/texto/
+# Artigos e manuais de referência (PDFs de terceiros)
+referencias/*.pdf
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Sistema
+desktop.ini
+Thumbs.db
+.DS_Store

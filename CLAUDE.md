@@ -36,6 +36,8 @@ PDFs de terceiros (trabalhos da UEB, artigos em `referencias/`) e textos extraí
 | `textos/revisao/Revisão bibliografica - TCC Romerio Filho e Bruna Lopes.md` | Google Doc | `1epLh5Yx06eVXS5vl8nY_iJj0mj4e2coQQdbLR6ZMJF0` | Bruna |
 | `textos/revisao/Revisão de literatura - strings e acervo UEB.md` | Google Doc (criado pelo Claude a partir do .md) | `1rNH1wZFqtWcwO8xlEnKS_ILFEw5unLmklYhum81ZT-I` | Romério |
 | (não copiado) | `Ciência no Acampamento - Bruna Lopes e Romério Lima Filho.mp4` (vídeo, ~15 MB) | `1YSricUXFZS3cNHaeYWki03WJnoTjWoW8` | Romério |
+| `figuras/` | Pasta "Figuras" | `1G8yBnUhPt9BKcssMYK9ff4FBBV2jIPmI` | Romério |
+| `figuras/*.png` (imagens puxadas do GitHub) | Google Doc "Andamento do projeto - figuras (30/10/2026)", dentro de "Figuras" | `1wei9vIE3ylJkjoV22V3o_bX55ppnjYcAUprCbFT_9ZI` | Romério |
 | (não copiado) | Pasta "Referências" (vazia na última cópia) | `1lzplK60xkhiERvszBk7Q-32A96NbvXOX` | Romério |
 
 Última cópia do Drive: 2026-10-29.

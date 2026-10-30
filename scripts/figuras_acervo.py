@@ -1,7 +1,7 @@
 """Parte 1: figuras do acervo de trabalhos acadêmicos da UEB.
 
 Uso: python -I scripts/figuras_acervo.py   (a partir da raiz do projeto)
-Lê dados/trabalhos_ueb/metadados.csv e dados/trabalhos_ueb/texto/*.txt
+Lê dados/trabalhos_ueb/trabalhos_ueb.csv e dados/trabalhos_ueb/texto/*.txt
 Grava em figuras/.
 """
 import sys as _sys
@@ -24,7 +24,9 @@ BASE = "dados/trabalhos_ueb"
 OUT = "figuras"
 os.makedirs(OUT, exist_ok=True)
 
-df = pd.read_csv(os.path.join(BASE, "metadados.csv"))
+df = pd.read_csv(os.path.join(BASE, "trabalhos_ueb.csv"), encoding="utf-8-sig")
+df["area"] = df.area_ueb
+df["arquivo"] = df.arquivo_local
 AREAS = list(estilo.AREA_COR)
 
 # ---------- 1a. Linha do tempo ----------

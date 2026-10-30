@@ -1,7 +1,7 @@
 """Figura 1e: mapa do Brasil com a instituição de origem de cada trabalho do acervo acadêmico da UEB.
 
 Uso: python -I scripts/figuras_mapa.py   (a partir da raiz do projeto)
-Lê dados/trabalhos_ueb/instituicoes.csv e dados/geo/brasil_uf.json (malha de UFs do IBGE,
+Lê dados/trabalhos_ueb/trabalhos_ueb.csv e dados/geo/brasil_uf.json (malha de UFs do IBGE,
 https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=application/vnd.geo+json&qualidade=minima&intrarregiao=UF)
 """
 import json
@@ -21,7 +21,10 @@ import estilo
 
 estilo.aplicar()
 OUT = "figuras"
-df = pd.read_csv("dados/trabalhos_ueb/instituicoes.csv")
+df = pd.read_csv("dados/trabalhos_ueb/trabalhos_ueb.csv", encoding="utf-8-sig")
+df["area"] = df.area_ueb
+# trabalho no exterior aparece como "Paraguai" na contagem por estado
+df["uf"] = df.uf.where(df.pais == "Brasil", df.pais)
 geo = json.load(open("dados/geo/brasil_uf.json", encoding="utf-8"))
 
 COD_UF = {"11": "RO", "12": "AC", "13": "AM", "14": "RR", "15": "PA", "16": "AP", "17": "TO", "21": "MA",

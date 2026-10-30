@@ -12,7 +12,7 @@ Os textos oficiais ficam no Google Drive, na pasta "TCC - EDC - Bruna e Romério
 |---|---|
 | `textos/tcc/` | Cópias em Markdown dos Google Docs do TCC |
 | `textos/revisao/` | Revisão de literatura: strings de busca, acervo da UEB, pré-lista de trabalhos |
-| `dados/trabalhos_ueb/` | Índice e metadados (ano, área, título) dos 46 trabalhos acadêmicos do acervo da UEB |
+| `dados/trabalhos_ueb/` | Tabela única com os metadados dos 46 trabalhos acadêmicos da UEB (`trabalhos_ueb.csv`, com dicionário de dados no README da pasta) |
 | `dados/especialidades/` | Especialidades escoteiras da UEB com requisitos e classificação na taxonomia de Bloom |
 | `scripts/` | Coleta, extração e figuras (Python) |
 | `figuras/` | Figuras geradas (PNG e SVG) |
@@ -33,8 +33,9 @@ Requer Python 3.12 com `pandas`, `matplotlib`, `wordcloud` e `pypdf`. Rodar a pa
 
 ```bash
 python -I scripts/extrair_trabalhos.py dados/trabalhos_ueb
-python -I scripts/metadados_trabalhos.py dados/trabalhos_ueb
+python -I scripts/tabela_trabalhos.py
 python -I scripts/figuras_acervo.py
+python -I scripts/figuras_mapa.py
 python -I scripts/coletar_especialidades.py
 python -I scripts/classificar_bloom.py
 python -I scripts/figuras_especialidades.py

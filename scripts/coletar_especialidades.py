@@ -30,9 +30,8 @@ for k in ["habilidades-para-a-vida", "meio-ambiente", "paz-e-desenvolvimento", "
         "Atualizado (Sênior e Pioneiro)", PROGRAMA[k][1])
 
 cats = json.load(open(os.path.join(BASE, "lista_categorias.json"), encoding="utf-8"))
-# Espeleoturismo aparece na lista visível de Ciência e Tecnologia, mas não veio na coleta automática
-if "espeleoturismo" not in cats["ciencia-e-tecnologia"]:
-    cats["ciencia-e-tecnologia"].append("espeleoturismo")
+# Atenção: no site, /especialidades/entomologia/ mostra o Espeleoturismo do programa anterior,
+# e a Entomologia está em /entomologia-2/. A lista de categorias já reflete isso.
 
 saida_path = os.path.join(BASE, "especialidades.json")
 feitos = {}
@@ -93,6 +92,16 @@ for cat, slugs in cats.items():
         time.sleep(0.3)
     print(cat, len(slugs))
 
+# Remove itens fora da lista atual e duplicatas (mesma especialidade publicada em dois endereços)
+validos = {(c, s) for c, ss in cats.items() for s in ss}
+vistos, unicos = set(), []
+for e in out:
+    chave = (e["programa"], e["nome"], tuple(re.sub(r"\s+", "", r) for r in e["requisitos"]))
+    if (e["categoria_slug"], e["slug"]) in validos and chave not in vistos:
+        vistos.add(chave)
+        unicos.append(e)
+print("duplicatas removidas:", len(out) - len(unicos))
+out = unicos
 json.dump(out, open(saida_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 sem = [e["slug"] for e in out if not e["requisitos"]]
 print("total", len(out), "sem requisitos:", len(sem), sem[:30])

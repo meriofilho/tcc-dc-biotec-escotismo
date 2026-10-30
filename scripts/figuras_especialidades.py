@@ -4,6 +4,8 @@ Uso: python -I scripts/figuras_especialidades.py   (a partir da raiz do projeto)
 Lê dados/especialidades/requisitos_bloom.csv e especialidades.json
 Grava em figuras/ e dados/especialidades/resumo_*.csv
 """
+import sys as _sys
+_sys.stdout.reconfigure(encoding="utf-8")
 import json
 import os
 import sys
@@ -33,7 +35,7 @@ PROG_COR = {"Anterior": "#7A8B99", "Atualizado (Lobinho e Escoteiro)": "#2E86AB"
 # ---------- 2a. Quantitativo geral ----------
 cont = esps.groupby(["programa", "area"]).size().reset_index(name="n")
 cont["prog_i"] = cont.programa.map(PROG_ORD.index)
-cont = cont.sort_values(["prog_i", "n"], ascending=[True, True])
+cont = cont.sort_values(["prog_i", "n"], ascending=[True, False])
 fig, ax = plt.subplots(figsize=(9, 6.5))
 y = np.arange(len(cont))
 ax.barh(y, cont.n, color=[PROG_COR[p] for p in cont.programa])
@@ -85,10 +87,12 @@ ax.legend(handles=[
     Patch(color=BIO_COR["biotecnologia (direta)"], label=f"Requisitos sobre biotecnologia (direta): {nd} especialidades"),
     Patch(color=BIO_COR["microbiologia e saneamento (relacionada)"],
           label=f"Requisitos sobre microbiologia/saneamento: {nr_} especialidades"),
-    Patch(color="#E6E9EE", label="Demais requisitos")], frameon=False, loc="lower right", fontsize=9)
+    Patch(color="#E6E9EE", label="Demais requisitos")], frameon=False, loc="lower left",
+    bbox_to_anchor=(0, 1.0), fontsize=9)
 ax.set_xlabel("Nº de requisitos")
+ax.set_ylim(len(ct) - 0.5, -0.5)
 ax.set_title(f"Ciência e Tecnologia ({len(ct)} especialidades): quantos requisitos tocam em biotecnologia",
-             loc="left")
+             loc="left", pad=62)
 ax.spines["left"].set_visible(False)
 ax.tick_params(axis="y", length=0)
 fig.text(0.01, -0.01, FONTE + " Busca por palavras-chave nos requisitos (DNA, genética, vacina, fermentação, "
@@ -130,9 +134,10 @@ def barras_bloom(dados, grupo, titulo, arquivo, largura=None, ordem=None, rotulo
     ax.set_axisbelow(True)
     h, l = ax.get_legend_handles_labels()
     ax.legend(h[::-1], l[::-1], frameon=False, bbox_to_anchor=(1.01, 0.5), loc="center left")
-    ax.set_title(titulo, loc="left")
-    fig.text(0.01, -0.03, FONTE + " Entre parênteses: nº de requisitos. Classificação automática pelo verbo "
-             "inicial do requisito (preliminar).", fontsize=8, color="#555")
+    ax.set_xlim(-0.6, n - 0.4)
+    ax.set_title(titulo, loc="left", pad=22)
+    ax.text(0, 1.015, FONTE + " Entre parênteses: nº de requisitos. Classificação automática pelo verbo inicial "
+            "(preliminar; tende a subestimar Avaliar e Criar).", transform=ax.transAxes, fontsize=8, color="#555")
     estilo.salvar(fig, os.path.join(OUT, arquivo))
     plt.close(fig)
     return pct

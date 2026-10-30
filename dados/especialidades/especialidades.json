@@ -1042,23 +1042,6 @@
   "texto_bloco": ""
  },
  {
-  "categoria_slug": "ciencia-e-tecnologia",
-  "programa": "Anterior",
-  "area": "Ciência e Tecnologia",
-  "slug": "espeleoturismo",
-  "nome": "Espeleoturismo",
-  "requisitos": [
-   "Explicar como as cavernas se formam e identificar suas principais formações rochosas, como estalactites e estalagmites.",
-   "Listar os equipamentos essenciais para o espeleoturismo e explicar como prevenir riscos comuns, como quedas ou falta de iluminação.",
-   "Identificar os principais obstáculos encontrados nas cavernas (trechos escorregadios, fendas, lagos, etc.) e apresentar formas seguras de superá-los.",
-   "Explicar como reduzir os impactos ambientais durante a visita , cuidando para não danificar formações nem deixar resíduos.",
-   "Fazer uma apresentação sobre a importância ecológica das cavernas e os animais que vivem nelas, destacando por que devem ser protegidos.",
-   "Realizar uma visita guiada a uma caverna e apresentar o trabalho de um grupo ou associação brasileira que estude ou preserve cavernas."
-  ],
-  "versao": "",
-  "texto_bloco": ""
- },
- {
   "categoria_slug": "cultura",
   "programa": "Anterior",
   "area": "Cultura",
@@ -6983,23 +6966,6 @@
   "categoria_slug": "meio-ambiente",
   "programa": "Atualizado (Lobinho e Escoteiro)",
   "area": "Meio Ambiente",
-  "slug": "culinaria-mateira-2",
-  "nome": "Culinária Mateira",
-  "requisitos": [
-   "Aplicar técnicas simples de conservação de alimentos, como secagem ao sol e defumação, dizendo quando e por que são úteis em acampamentos.",
-   "Montar e acender diferentes tipos de fogueiras para cozinhar, explicando o uso de cada uma e como apagá-las com segurança.",
-   "Preparar um prato simples usando a técnica da caieira (cozimento enterrado), contando como o alimento é cozido e quais cuidados devem ser tomados.",
-   "Fazer três sobremesas ou lanches com técnicas da culinária mateira, usando apenas fogueira, brasa ou fogão improvisado.",
-   "Explicar como manter a higiene e o cuidado no preparo de alimentos, especialmente ao limpar aves, peixes ou vegetais.",
-   "Cozinhar diferentes receitas, usando um forno de barro ou outro método tradicional."
-  ],
-  "versao": "",
-  "texto_bloco": ""
- },
- {
-  "categoria_slug": "meio-ambiente",
-  "programa": "Atualizado (Lobinho e Escoteiro)",
-  "area": "Meio Ambiente",
   "slug": "energia-2",
   "nome": "Energia",
   "requisitos": [
@@ -7010,25 +6976,6 @@
    "Propor ideias para economizar energia em casa, na escola ou na Unidade Escoteira Local, observando hábitos do dia a dia.",
    "Pesquisar os impactos ambientais causados pela produção de energia, explicando quais fontes poluem menos e por quê.",
    "Comparar duas formas de geração de energia, destacando vantagens e desvantagens de cada uma.",
-   "Fazer uma apresentação para sua patrulha ou seção explicando por que é importante economizar energia e cuidar do planeta."
-  ],
-  "versao": "",
-  "texto_bloco": ""
- },
- {
-  "categoria_slug": "meio-ambiente",
-  "programa": "Atualizado (Lobinho e Escoteiro)",
-  "area": "Meio Ambiente",
-  "slug": "energia-atualizado",
-  "nome": "Energia",
-  "requisitos": [
-   "Identificar os principais tipos de fontes de energia , explicando de onde vêm e como funcionam (solar, eólica, hidráulica, biomassa, nuclear e térmica).",
-   "Contar o que aprendeu sobre uma fonte de energia escolhida , mostrando como ela é usada no Brasil e no mundo.",
-   "Explicar, com um desenho ou maquete simples, como funciona uma usina hidrelétrica , mostrando o caminho da água até a geração de energia.",
-   "Construir um pequeno protótipo que mostre o uso da energia renovável, explicando seu funcionamento.",
-   "Propor ideias para economizar energia em casa, na escola ou na Unidade Escoteira Local , observando hábitos do dia a dia.",
-   "Pesquisar os impactos ambientais causados pela produção de energia , explicando quais fontes poluem menos e por quê.",
-   "Comparar duas formas de geração de energia , destacando vantagens e desvantagens de cada uma.",
    "Fazer uma apresentação para sua patrulha ou seção explicando por que é importante economizar energia e cuidar do planeta."
   ],
   "versao": "",

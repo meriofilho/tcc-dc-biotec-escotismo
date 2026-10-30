@@ -4,6 +4,8 @@ Uso: python -I scripts/figuras_acervo.py   (a partir da raiz do projeto)
 Lê dados/trabalhos_ueb/metadados.csv e dados/trabalhos_ueb/texto/*.txt
 Grava em figuras/.
 """
+import sys as _sys
+_sys.stdout.reconfigure(encoding="utf-8")
 import os
 import re
 import sys

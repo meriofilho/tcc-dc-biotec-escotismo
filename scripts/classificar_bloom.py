@@ -12,6 +12,8 @@ Uso: python -I scripts/classificar_bloom.py
 Lê  dados/especialidades/especialidades.json
 Gera dados/especialidades/requisitos_bloom.csv e verbos_nao_classificados.csv
 """
+import sys as _sys
+_sys.stdout.reconfigure(encoding="utf-8")
 import csv
 import json
 import re
@@ -49,6 +51,25 @@ VERBOS = {
         escrever conceber programar organizar_evento roteirizar construir_projeto desenhar_projeto
         gravar_producao editar montar_espetaculo""",
 }
+EXTRA = {  # verbos encontrados nos requisitos da UEB que não estavam no dicionário inicial
+    "Participar": "trazer",
+    "Lembrar": "possuir enunciar",
+    "Compreender": "aprender discorrer buscar explorar descobrir associar dissertar especificar",
+    "Aplicar": """entrevistar trabalhar gravar atuar simular dominar trocar reproduzir orientar representar dar
+        atravessar colocar dramatizar configurar encontrar passar marcar colher empinar abrir posicionar
+        dirigir modificar encadernar acertar dissecar afinar estabelecer conectar digitalizar extrair obter
+        decolar pousar lidar embutir trimar""",
+    "Analisar": "catalogar",
+    "Avaliar": "promover validar",
+    "Criar": "formular customizar recriar",
+}
+# Requisitos escritos no imperativo ou com erro de digitação
+IMPERATIVO = {"cite": "citar", "explique": "explicar", "escolha": "escolher", "descreva": "descrever",
+              "faca": "fazer", "identifique": "identificar", "entende": "entender", "scolher": "escolher",
+              "demonstre": "demonstrar", "apresente": "apresentar", "liste": "listar"}
+for nivel, txt in EXTRA.items():
+    VERBOS[nivel] += " " + txt
+
 VERBO_NIVEL = {}
 for nivel, txt in VERBOS.items():
     for v in txt.split():
@@ -57,10 +78,11 @@ for nivel, txt in VERBOS.items():
 PULAR = {"saber", "ser", "capaz", "de", "o", "a", "os", "as", "e", "ou", "conhecer", "poder", "sobre"}
 
 BIOTEC = {
-    "biotecnologia (direta)": r"biotecnolog|\bdna\b|\brna\b|genétic|\bgene|genoma|transgên|clonag|engenharia genética|"
-                              r"vacina|enzima|ferment|levedura|biorremedia|biocombust|biogás|biodiesel|etanol",
+    "biotecnologia (direta)": r"biotecnolog|\bdna\b|\brna\b|genétic|\bgenes?\b|genoma|transgên|clonag|"
+                              r"vacina|enzima|ferment|levedura|biorremedia|biocombust|biogás|biodiesel",
     "microbiologia e saneamento (relacionada)": r"microrganism|micro-organism|microbio|bactéri|fungo|vírus|"
-                                                r"microscóp|cultura de |compostag|decomposi|esgoto|"
+                                                r"microscóp|cultura de (bactéri|fung|microrganism|célul)|"
+                                                r"compostag|decomposi|esgoto|"
                                                 r"tratamento d[ae] água|purifica|saneamento|chorume|biodegrad",
 }
 
@@ -78,7 +100,8 @@ def infinitivo(palavra):
     infinitivo. Só trata o reflexivo (orientar-se) e tira pontuação."""
     p = palavra.strip(" ,.;:()\"'“”")
     p = re.sub(r"-(se|lo|la|los|las)$", "", p)
-    return sem_acento(p)
+    p = sem_acento(p)
+    return IMPERATIVO.get(p, p)
 
 
 def classificar(req):
@@ -86,7 +109,18 @@ def classificar(req):
     txt = re.sub(r"^\s*[\d\.\)\-–a-z]\s*[\)\.]\s*", "", txt)  # tira "a) " ou "1. "
     if re.match(r"^(demonstrar|mostrar|ter|possuir)\s+(que\s+conhece|conhecimento)", txt):
         return "Compreender", "demonstrar conhecimento"
+    if re.match(r"^ter\s+(participado|assistido|frequentado|visitado|acompanhado|colaborado|ajudado)", txt):
+        return "Participar", "ter participado"
+    if re.match(r"^(ter|possuir)\s", txt):
+        return "Lembrar", "ter"
     palavras = txt.split()
+    # Requisito que não abre com verbo ("Em um acampamento, identificar..."): procura o 1º verbo conhecido
+    if palavras and infinitivo(palavras[0]) not in VERBO_NIVEL and infinitivo(palavras[0]) not in PULAR:
+        for j, p in enumerate(palavras[1:9], 1):
+            w = infinitivo(p)
+            if w in VERBO_NIVEL and w.endswith(("ar", "er", "ir", "or")):
+                palavras = palavras[j:]
+                break
     verbos = []
     i = 0
     # Verbo principal e verbos coordenados logo depois ("construir e apresentar", "montar, desmontar e dobrar")
@@ -129,6 +163,9 @@ esps = json.load(open(f"{BASE}/especialidades.json", encoding="utf-8"))
 linhas = []
 nao = Counter()
 for e in esps:
+    # Sênior e Pioneiro (programa atualizado) não têm lista fixa de itens: ficam fora da classificação
+    if e["programa"].startswith("Atualizado (Sênior"):
+        continue
     for n, req in enumerate(e["requisitos"], 1):
         nivel, verbo = classificar(req)
         if nivel == "Não classificado":

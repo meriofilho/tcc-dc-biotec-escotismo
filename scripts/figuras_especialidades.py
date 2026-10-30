@@ -143,6 +143,53 @@ def barras_bloom(dados, grupo, titulo, arquivo, largura=None, ordem=None, rotulo
     return pct
 
 
+def barras_bloom_h(dados, grupo, titulo, arquivo, destaque=(), rotulo_min=0.08):
+    """Mesma figura, na horizontal: uma linha por item, níveis da esquerda (Participar) para a direita (Criar)."""
+    d = dados[dados.nivel_bloom.isin(NIV)]
+    tab = pd.crosstab(d[grupo], d.nivel_bloom).reindex(columns=NIV, fill_value=0)
+    pct = tab.div(tab.sum(axis=1), axis=0)
+    score = (pct * np.arange(len(NIV))).sum(axis=1)
+    pct = pct.loc[score.sort_values(ascending=False).index]
+    n = len(pct)
+    fig, ax = plt.subplots(figsize=(9.5, 0.3 * n + 2.2))
+    y = np.arange(n)
+    base = np.zeros(n)
+    for nv in NIV:
+        v = pct[nv].values
+        ax.barh(y, v, left=base, color=estilo.BLOOM_COR[nv], height=0.78, label=nv, edgecolor="white", linewidth=0.4)
+        for yi, (b, w) in enumerate(zip(base, v)):
+            if w >= rotulo_min:
+                ax.text(b + w / 2, yi, f"{w:.0%}", ha="center", va="center", fontsize=7,
+                        color="#333" if nv in ("Participar", "Analisar", "Lembrar") else "white")
+        base += v
+    ax.set_yticks(y)
+    ax.set_yticklabels([f"{i} ({tab.loc[i].sum()})" for i in pct.index], fontsize=8.5)
+    for lab in ax.get_yticklabels():
+        if lab.get_text().rsplit(" (", 1)[0] in destaque:
+            lab.set_fontweight("bold")
+            lab.set_color("#C0392B")
+    ax.set_ylim(n - 0.5, -0.5)
+    ax.set_xlim(0, 1)
+    ax.set_xticks([0, 1 / 3, 2 / 3, 1])
+    ax.set_xticklabels(["0%", "33%", "67%", "100%"])
+    ax.xaxis.grid(True, color="#ccc", linewidth=0.6)
+    ax.set_axisbelow(True)
+    ax.spines["left"].set_visible(False)
+    ax.tick_params(axis="y", length=0)
+    ax.legend(ncol=len(NIV), frameon=False, loc="lower left", bbox_to_anchor=(0, 1.0), fontsize=8.5,
+              handlelength=1.2, columnspacing=1.0)
+    ax.set_title(titulo, loc="left", pad=40)
+    nota = ("Ordenado do nível médio mais alto para o mais baixo. Entre parênteses: nº de requisitos."
+            + (" Em vermelho: especialidades com requisitos ligados a biotecnologia." if destaque else "")
+            + "\n" + FONTE + " Classificação automática pelo verbo inicial (preliminar; tende a subestimar "
+            "Avaliar e Criar).")
+    ax.annotate(nota, xy=(0, 0), xycoords="axes fraction", xytext=(0, -28), textcoords="offset points",
+                fontsize=7.5, color="#555", va="top", ha="left")
+    estilo.salvar(fig, os.path.join(OUT, arquivo))
+    plt.close(fig)
+    return pct
+
+
 # 2c. As dez mais conquistadas, como no manual (para comparar a classificação automática com a do manual)
 DEZ = ["Primeiros Socorros", "Rastreamento", "Culinária", "Acampamento", "Técnicas de Sapa", "Pioneiria",
        "Babá", "Confeitaria", "Natação", "Prevenção ao Uso de Drogas"]
@@ -155,8 +202,9 @@ if dez.especialidade.nunique() >= 8:
 
 # 2d. Ciência e Tecnologia
 ctr = ant[ant.area == "Ciência e Tecnologia"]
-barras_bloom(ctr, "especialidade", "Níveis de Bloom nos requisitos das especialidades de Ciência e Tecnologia",
-             "2d_bloom_ciencia_tecnologia")
+bio_ct = set(ct.loc[ct.biotec != "sem relação", "nome"])
+barras_bloom_h(ctr, "especialidade", "Níveis de Bloom nas especialidades de Ciência e Tecnologia",
+               "2d_bloom_ciencia_tecnologia", destaque=bio_ct)
 
 # 2e. Visão geral: todas as áreas dos três programas
 req["grupo"] = req.area + " · " + req.programa.str.replace("Atualizado ", "Atual. ").str.replace(

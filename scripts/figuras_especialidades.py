@@ -206,6 +206,62 @@ bio_ct = set(ct.loc[ct.biotec != "sem relação", "nome"])
 barras_bloom_h(ctr, "especialidade", "Níveis de Bloom nas especialidades de Ciência e Tecnologia",
                "2d_bloom_ciencia_tecnologia", destaque=bio_ct)
 
+# 2f. Ciência e Tecnologia: distribuição dos níveis e verbos mais pedidos (como em Vick e Garvey, 2008)
+cls = ctr[ctr.nivel_bloom.isin(NIV)]
+niv_n = cls.nivel_bloom.value_counts().reindex(NIV, fill_value=0)
+# Cada verbo conta uma vez por requisito; "construir+apresentar" conta para os dois
+vb = ctr.assign(v=ctr.verbo.str.split("+")).explode("v")
+vb = vb[vb.nivel_bloom.isin(NIV)]
+simples = vb[~vb.verbo.str.contains(r"\+", regex=True)]
+nivel_do_verbo = simples.groupby("v").nivel_bloom.agg(lambda s: s.mode().iloc[0])
+nivel_do_verbo = nivel_do_verbo.reindex(vb.v.unique()).fillna(vb.groupby("v").nivel_bloom.agg(lambda s: s.mode().iloc[0]))
+freq_v = vb.v.value_counts()
+tab_v = pd.DataFrame({"verbo": freq_v.index, "requisitos": freq_v.values,
+                      "nivel_bloom": nivel_do_verbo.reindex(freq_v.index).values})
+tab_v["pct_requisitos"] = (tab_v.requisitos / len(cls)).round(4)
+tab_v.to_csv(f"{BASE}/verbos_ciencia_tecnologia.csv", index=False, encoding="utf-8-sig")
+ROTULO_V = {"demonstrar conhecimento": "demonstrar conhecimento", "ter": "ter (noções, conhecimento)"}
+
+TOP = 20
+top = tab_v.head(TOP)
+fig, (a1, a2) = plt.subplots(1, 2, figsize=(13, 7.2), gridspec_kw={"width_ratios": [1, 1.35], "wspace": 0.45})
+y1 = np.arange(len(NIV))
+a1.barh(y1, niv_n.values, color=[estilo.BLOOM_COR[n] for n in NIV], edgecolor="#999", linewidth=0.4)
+for yi, v in zip(y1, niv_n.values):
+    p = v / niv_n.sum()
+    a1.text(v + 3, yi, f"{v} ({p:.1%})".replace(".", ",") if p < 0.01 else f"{v} ({p:.0%})", va="center", fontsize=9)
+a1.set_yticks(y1)
+a1.set_yticklabels(NIV)
+a1.set_ylim(len(NIV) - 0.5, -0.5)
+a1.set_xlim(0, niv_n.max() * 1.3)
+a1.set_xlabel("Nº de requisitos")
+a1.set_title(f"Níveis de Bloom ({niv_n.sum()} requisitos)", loc="left", fontsize=11)
+a1.spines["left"].set_visible(False)
+a1.tick_params(axis="y", length=0)
+
+y2 = np.arange(len(top))
+a2.barh(y2, top.requisitos, color=[estilo.BLOOM_COR[n] for n in top.nivel_bloom], edgecolor="#999", linewidth=0.4)
+for yi, v in zip(y2, top.requisitos):
+    a2.text(v + 1, yi, str(v), va="center", fontsize=9)
+a2.set_yticks(y2)
+a2.set_yticklabels([ROTULO_V.get(v, v) for v in top.verbo])
+a2.set_ylim(len(top) - 0.5, -0.5)
+a2.set_xlim(0, top.requisitos.max() * 1.15)
+a2.set_xlabel("Nº de requisitos que pedem o verbo")
+a2.set_title(f"Os {TOP} verbos mais pedidos (de {len(tab_v)} verbos diferentes)", loc="left", fontsize=11)
+a2.spines["left"].set_visible(False)
+a2.tick_params(axis="y", length=0)
+a2.legend(handles=[Patch(color=estilo.BLOOM_COR[n], label=n) for n in NIV], frameon=False, title="Nível do verbo",
+          loc="lower right", fontsize=9)
+fig.suptitle("Ciência e Tecnologia: o que as especialidades pedem que os jovens façam", x=0.02, ha="left",
+             fontweight="bold", fontsize=13)
+fig.text(0.02, -0.02, FONTE + f" {len(ctr) - len(cls)} requisitos sem verbo reconhecido ficaram de fora. "
+         "Cada verbo conta uma vez por requisito (\"construir e apresentar\" conta para os dois). "
+         "Classificação automática, preliminar.", fontsize=8, color="#555")
+estilo.salvar(fig, os.path.join(OUT, "2f_ciencia_tecnologia_niveis_e_verbos"))
+plt.close(fig)
+print(tab_v.head(10).to_string())
+
 # 2e. Visão geral: todas as áreas dos três programas
 req["grupo"] = req.area + " · " + req.programa.str.replace("Atualizado ", "Atual. ").str.replace(
     "(Lobinho e Escoteiro)", "(L/E)").str.replace("(Sênior e Pioneiro)", "(S/P)")

@@ -39,6 +39,7 @@ PDFs de terceiros (trabalhos da UEB, artigos em `referencias/`) e textos extraí
 | `figuras/` | Pasta "Figuras" | `1G8yBnUhPt9BKcssMYK9ff4FBBV2jIPmI` | Romério |
 | `figuras/*.png` (imagens puxadas do GitHub) | Google Doc "Andamento do projeto - figuras (30/10/2026)", dentro de "Figuras" | `1wei9vIE3ylJkjoV22V3o_bX55ppnjYcAUprCbFT_9ZI` | Romério |
 | `dados/especialidades/revisao_ciencia_tecnologia.csv` (origem dos dados) | Planilha "Revisão Bloom - Ciência e Tecnologia" (classificação manual de Romério e Bruna, kappa, consenso). Fórmulas em pt-BR: separador `;` | `1uI8cB1Y_K6bf81JIsDc5siSBbqAiug1-ZabujwWAzZw` | Romério |
+| `dados/trabalhos_ueb/trabalhos_ueb.csv` (fonte; a planilha é cópia) | Planilha "Acervo acadêmico UEB - metadados dos 46 trabalhos" (abas Trabalhos e Dicionário) | `1Rsl04BJbsNzEwP-bREsj06Mb3XxvmPqkNDVASApRX-g` | Romério |
 | (não copiado) | Pasta "Referências" (vazia na última cópia) | `1lzplK60xkhiERvszBk7Q-32A96NbvXOX` | Romério |
 
 Última cópia do Drive: 2026-10-29.

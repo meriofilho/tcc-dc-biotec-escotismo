@@ -33,7 +33,7 @@ Codificação UTF-8 com BOM (abre direto no Excel). Campos lidos na capa, folha 
 | `curso` | Curso ou programa de origem |
 | `grande_area_curso` | Grande área do curso, pela tabela de áreas do CNPq/CAPES (Ensino e Ciências Ambientais = Multidisciplinar) |
 | `area_ueb` | Área atribuída pelo site da UEB (Ciências Biológicas, Exatas, Humanas, Tecnologia) |
-| `tema` | Tema principal, codificado por nós (10 categorias) |
+| `tema` | Tema principal, codificado a partir do título e do resumo (10 categorias; classificação preliminar, a revisar) |
 | `instituicao`, `sigla` | Instituição de origem |
 | `natureza_instituicao` | Pública federal, estadual ou municipal; Privada (inclui comunitárias e confessionais); Não informada |
 | `cidade`, `uf`, `regiao`, `pais` | Local da instituição |

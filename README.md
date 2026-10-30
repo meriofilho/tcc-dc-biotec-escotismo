@@ -36,6 +36,7 @@ python -I scripts/extrair_trabalhos.py dados/trabalhos_ueb
 python -I scripts/tabela_trabalhos.py
 python -I scripts/figuras_acervo.py
 python -I scripts/figuras_mapa.py
+python -I scripts/figuras_painel.py
 python -I scripts/coletar_especialidades.py
 python -I scripts/classificar_bloom.py
 python -I scripts/figuras_especialidades.py
